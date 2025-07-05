@@ -64,14 +64,7 @@ export const HeroSection: React.FC = () => {
                   </motion.div>
                 </motion.button>
 
-                <motion.button
-                  className="btn-secondary flex items-center justify-center space-x-3 px-8 py-4"
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
-                >
-                  <Play size={20} />
-                  <span>Watch Demo</span>
-                </motion.button>
+                
               </div>
             </ScrollAnimation>
 
