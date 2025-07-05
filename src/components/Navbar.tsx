@@ -231,6 +231,49 @@ export const Navbar: React.FC<NavbarProps> = ({ user, setUser }) => {
                 </Link>
               </motion.div>
             ))}
+            {/* Login / Signup as a menu item */}
+            {!user && (
+              <motion.div
+                key="login-signup"
+                initial={{ opacity: 0, x: -20 }}
+                animate={{ opacity: isOpen ? 1 : 0, x: isOpen ? 0 : -20 }}
+                transition={{ delay: navItems.length * 0.05 }}
+              >
+                <button
+                  onClick={() => {
+                    setShowAuthModal(true);
+                    setIsOpen(false);
+                  }}
+                  className="flex items-center space-x-4 w-full p-4 rounded-2xl bg-gradient-to-r from-blue-600 to-purple-600 text-white font-semibold shadow hover:from-blue-700 hover:to-purple-700 transition-all duration-300"
+                >
+                  <span className="font-medium text-lg">Login / Signup</span>
+                </button>
+              </motion.div>
+            )}
+            {/* Auth Buttons for Mobile */}
+            {!user && (
+              <button
+                onClick={() => {
+                  setShowAuthModal(true);
+                  setIsOpen(false);
+                }}
+                className="w-full mt-4 px-4 py-3 rounded-xl bg-gradient-to-r from-blue-600 to-purple-600 text-white font-semibold shadow hover:from-blue-700 hover:to-purple-700 transition-all duration-300"
+              >
+                Login / Signup
+              </button>
+            )}
+            {user && (
+              <button
+                onClick={async () => {
+                  await supabase.auth.signOut();
+                  setUser(null);
+                  setIsOpen(false);
+                }}
+                className="w-full mt-4 px-4 py-3 rounded-xl bg-gray-200 text-gray-800 font-semibold shadow hover:bg-gray-300 transition-all duration-300"
+              >
+                Logout
+              </button>
+            )}
           </div>
         </motion.div>
       </motion.div>
