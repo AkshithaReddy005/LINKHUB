@@ -259,11 +259,7 @@ export const Navbar: React.FC<NavbarProps> = ({ user, setUser }) => {
       >
         ×
       </button>
-      <AuthPage onAuth={async () => {
-        const { data } = await import('../supabaseClient').then(m => m.supabase.auth.getUser());
-        setUser(data.user);
-        setShowAuthModal(false);
-      }} />
+      <AuthPage onAuth={() => setShowAuthModal(false)} />
     </motion.div>
   </div>
 )}
